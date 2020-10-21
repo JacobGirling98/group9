@@ -1,0 +1,15 @@
+[submodule "Resources/db-db"]
+	path = Resources/db-db
+	url = https://github.com/stream2stream/db-db.git
+[submodule "Resources/data-generator"]
+	path = Resources/data-generator
+	url = https://github.com/stream2stream/data-generator.git
+[submodule "Resources/webServerEvents"]
+	path = Resources/webServerEvents
+	url = https://github.com/stream2stream/webServerEvents.git
+[submodule "Resources/hm-websockets"]
+	path = Resources/hm-websockets
+	url = https://github.com/stream2stream/hw-websockets.git
+[submodule "Resources/python-sse-clock"]
+	path = Resources/python-sse-clock
+	url = https://github.com/stream2stream/python-sse-clock.git
