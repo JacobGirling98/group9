@@ -28,6 +28,10 @@ def sse_stream():
 def connect_db():
     return DAO.connect_db()
 
+@app.route('/select')
+def select_all():
+    return DAO.select_all()
+
 
 def bootapp():
     #global rdd 
