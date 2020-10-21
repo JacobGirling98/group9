@@ -13,4 +13,12 @@ class DatabaseConnector:
         myresult = self.cursor.fetchall()
 
         return(myresult)
+
+    def insert(self, query, val):
+        self.cursor = self.connector.cursor()
+        self.cursor.execute(query, val)
+        self.connector.commit()
+        return
+
+
     

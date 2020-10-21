@@ -13,3 +13,9 @@ def select_all():
     query = "SELECT * FROM anonymous_users"
     myresult = mydb.select(query)
     return(str(myresult))
+
+def insert_test():
+    query = """INSERT INTO test (name) VALUES (%s)"""
+    value = ("leileilei",)
+    mydb.insert(query, value)
+    return("1")
