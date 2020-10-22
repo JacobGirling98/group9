@@ -22,19 +22,15 @@ def stream():
 
 @app.route('/streamTest/sse')
 def sse_stream():
-     return webServiceStream.sse_stream()
+    return webServiceStream.sse_stream()
+
+#@app.route('/streamIntoDatabase')
+#def stream_into_database():
+#    return DAO.stream_into_database()
 
 @app.route('/connect')
 def connect_db():
     return DAO.connect_db()
-
-@app.route('/select')
-def select_all():
-    return DAO.select_all()
-
-@app.route('/insert')
-def insert_test():
-    return DAO.insert_test()
 
 @app.route('/register_user/username=<username>&password=<encryptedPasswd>')
 def register_user(username,encryptedPasswd):
@@ -43,7 +39,10 @@ def register_user(username,encryptedPasswd):
 @app.route('/login/username=<username>&password=<encryptedPasswd>')
 def login(username,encryptedPasswd):
     return DAO.login(username,encryptedPasswd)
-    
+
+@app.route('/showHistoricalData/beginning=<startDate>&ending=<endDate>&instrumentName=<instrumentName>&counterparty=<counterparty>')
+def show_historical_data(startDate,endDate,instrumentName,counterparty):
+    return DAO.show_historical_data(startDate,endDate,instrumentName,counterparty)
 
 def bootapp():
     #global rdd 
