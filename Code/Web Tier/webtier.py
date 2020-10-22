@@ -3,6 +3,7 @@ from flask_sse import sse
 from flask_cors import CORS
 import requests
 import time
+import hashlib
 
 app = Flask(__name__)
 #app.register_blueprint(sse, url_prefix='/stream')
@@ -11,25 +12,36 @@ CORS(app)
 class AuthenticationService(object):
     def authenticate(self, username, password):
         if not username or not password:
-            print("Empty User/Password")
+            print("Empty username/password")
             return 'Username or password empty...'
         else:
-            # Make a call to the database and return message.
-            # Localhost:8080/login/user={}&password={}'.format(username,password)
-            # Url = localhost8080/login/user= + <username> + &password = + <password>
-            # LocalHost8080/login/user=<username>&password=<password>
-            # Return Request .get
             return self.send_request(username, password)
 
-    def send_request(self, username, password):
-        ##Make a connect request.
-        # url = http://localhost:8080/connect
+    def _encrypt_password(self,password):
+        print("Encrypting...")
+        encrypted_password = hashlib.sha256(password.encode()).hexdigest()
+        return encrypted_password
 
+    def _connectToDatabase(self):
+        connectUrl = "http://localhost:8080/connect"
+        connectedResponse = requests.get(connectUrl)
+
+        return connectedResponse.status_code
+
+    def send_request(self, username, password):
+        encrypted_password = self._encrypt_password(password)
+
+        # Needs linking up the function.
+        # Change passwords so that they are encrypted.
         
-        url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
-        validity_message = requests.get(url).text
-        print(validity_message)
-        return validity_message
+        if self._connectToDatabase() == 200:
+            url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
+            validity_message = requests.get(url).text
+            print(validity_message)
+            return validity_message
+        else:
+            print("Could not connect to database.")
+            return "Something went wrong."
 
 def get_message():
     """this could be any function that blocks until data is ready"""
