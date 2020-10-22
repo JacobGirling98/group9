@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login from './Login';
+import NavBar from './NavBar';
 
 const FrontEnd = () => {
-    
+
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [webtierResponse, setWebtierResponse] = useState('');
@@ -31,7 +33,7 @@ const FrontEnd = () => {
         //console.log("Sending user details to webtier");
         console.log(userName, userPassword);
     }
-    
+
     useEffect(() => {
         setTimeout(() => {
             getResponseWebTier()
@@ -49,7 +51,7 @@ const FrontEnd = () => {
             setLoadingStatus(false);
             console.log(loadingStatus);
         }
-        catch(e) {
+        catch (e) {
             console.log(e.message);
             console.log("This has failed");
             setOnlineStatus(false);
@@ -59,11 +61,11 @@ const FrontEnd = () => {
 
     const postUserDetails = async (userName, userPassword) => {
         try {
-            await axios.post(WEBTIERURL_SENDDETAILS, {"UN" : {userName}, "PW" : {userPassword}});
+            await axios.post(WEBTIERURL_SENDDETAILS, { "UN": { userName }, "PW": { userPassword } });
             setOnlineStatus(true);
             console.log("Sent info");
         }
-        catch(e) {
+        catch (e) {
             setOnlineStatus(false);
             console.log("Info not sent");
         }
@@ -84,19 +86,22 @@ const FrontEnd = () => {
             console.log("Login failed")
         }
     }*/}
-    
+
     return (
-        <div>
-            <Login 
-                userDetails = {{userName, userPassword}}
-                handleUserNameChange={handleUserNameChange}
-                handleUserPasswordChange={handleUserPasswordChange}
-                //handleSubmitButton={handleSubmitButton}
-                postUserDetails={postUserDetails}
-            />
-            <p>{userName}</p>
-            <p>{userPassword}</p>
-        </div>
+        <Router>
+            <div>
+                <Login
+                    userDetails={{ userName, userPassword }}
+                    handleUserNameChange={handleUserNameChange}
+                    handleUserPasswordChange={handleUserPasswordChange}
+                    //handleSubmitButton={handleSubmitButton}
+                    postUserDetails={postUserDetails}
+                />
+                <p>{userName}</p>
+                <p>{userPassword}</p>
+                <NavBar />
+            </div>
+        </Router>
     );
 }
 
