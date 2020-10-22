@@ -32,6 +32,9 @@ def connect_db():
 def select_all():
     return DAO.select_all()
 
+@app.route('/insert')
+def insert_test():
+    return DAO.insert_test()
 
 def bootapp():
     #global rdd 
