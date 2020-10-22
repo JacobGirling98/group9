@@ -9,10 +9,17 @@ import NavBar from './NavBar';
 
 const FrontEnd = () => {
 
+    const [loginState, setLoginState] = useState(false);
+
+    const changeLoginStatus = () => {
+        setLoginState(true);
+        console.log("Status changed");
+    }
+
     return (
         <Router>
-            <Route exact path='/' component={HomePage} />
-            <Route path = '/display' component={DisplayPage} />
+            <Route exact path='/' component={() => <HomePage changeStatus={changeLoginStatus} testing="test"/>} />
+            <Route path = '/display' component={DisplayPage}  />
                 {/*<HomePage 
                     userDetails={{ userName, userPassword }}
                     handleUserNameChange={handleUserNameChange}

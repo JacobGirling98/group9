@@ -12,7 +12,7 @@ const NavBar = (props) => {
                     <Link className="pageLink" to={`${props.match.url}/historic`}>Historical Data</Link>
                 </li>
                 <li>
-                    <Link className="pageLink" to={`${props.match.url}/average`}>Minimum Report</Link>
+                    <Link className="pageLink" to={`${props.match.url}/report`}>Minimum Report</Link>
                 </li>
             </ul>
         </nav>

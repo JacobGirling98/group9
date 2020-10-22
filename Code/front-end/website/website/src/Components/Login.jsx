@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DisplayPage from './DisplayPage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 const Login = props => {
@@ -21,7 +23,7 @@ const Login = props => {
 
     const handleUserPasswordChange = (changedUserPassword) => {
         setUserPassword(changedUserPassword);
-        console.log("Changed user password");
+        
     }
 
     {/*const handleSubmitButton = event => {
@@ -34,6 +36,7 @@ const Login = props => {
     useEffect(() => {
         setTimeout(() => {
             getResponseWebTier()
+            //console.log(`${props.match.url}`);
         }, 1000);
     }, []);
 
@@ -58,9 +61,18 @@ const Login = props => {
 
     const postUserDetails = async (userName, userPassword) => {
         try {
-            await axios.post(WEBTIERURL_SENDDETAILS, { "UN": { userName }, "PW": { userPassword } });
+            const res = await axios.post(WEBTIERURL_SENDDETAILS, { "UN": { userName }, "PW": { userPassword } });
+            const response = await res.data;
+            console.log(response);
+            //console.log(res);
+            
+
             setOnlineStatus(true);
-            console.log("Sent info");
+            if (response === "Invalid username or password.") {
+                //console.log("successful")
+                //return <DisplayPage match={props.match}/>;
+                props.changeStatus();
+            }
         }
         catch (e) {
             setOnlineStatus(false);
@@ -90,6 +102,7 @@ const Login = props => {
         //props.postUserDetails("Tom", "Jacob");
         console.log("Sending user details to webtier");
         console.log(userName, userPassword);
+        //console.log(result);
         //console.log("Tom", "Jacob");
     }
 
@@ -115,7 +128,7 @@ const Login = props => {
                         </tr>
                         <tr>
                             <td>
-                                <p>Passport</p>
+                                <p>Password</p>
                             </td>
                             <td>
                                 <input
