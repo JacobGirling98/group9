@@ -22,8 +22,12 @@ class AuthenticationService(object):
             return self.send_request(username, password)
 
     def send_request(self, username, password):
-        url = 'https://localhost:8080/login/username={}&password={}'.format(username,password)
-        validity_message = requests.get(url)
+        ##Make a connect request.
+        # url = http://localhost:8080/connect
+
+        
+        url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
+        validity_message = requests.get(url).text
         print(validity_message)
         return validity_message
 
@@ -60,9 +64,9 @@ def sendRequest():
     print("Sending request to database...")
 
     auth = AuthenticationService()
-    res = auth.send_request("Tom", "Password")
+    res = auth.send_request("selvyn", "gradprog2016")
 
-    return "Connection to Database successful."
+    return res
 
 @app.route('/login', methods =['POST'])
 def login():
