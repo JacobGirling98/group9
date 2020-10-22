@@ -19,3 +19,9 @@ def insert_test():
     value = ("leileilei",)
     mydb.insert(query, value)
     return("1")
+
+def insert_user(username,encryptedPasswd):
+    query = """INSERT IGNORE INTO users (user_id, user_pwd) VALUES(%s,%s)"""
+    value = (username,encryptedPasswd)
+    mydb.insert(query, value)
+    return("Registration successful!")

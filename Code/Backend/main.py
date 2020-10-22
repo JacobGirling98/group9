@@ -36,6 +36,11 @@ def select_all():
 def insert_test():
     return DAO.insert_test()
 
+@app.route('/insert_user/username=<username>&password=<encryptedPasswd>')
+def insert_user(username,encryptedPasswd):
+    return DAO.insert_user(username,encryptedPasswd)
+    
+
 def bootapp():
     #global rdd 
     #rdd = RandomDealData()
