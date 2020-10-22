@@ -15,9 +15,17 @@ class AuthenticationService(object):
             return 'Username or password empty...'
         else:
             # Make a call to the database and return message.
+            # Localhost:8080/login/user={}&password={}'.format(username,password)
+            # Url = localhost8080/login/user= + <username> + &password = + <password>
+            # LocalHost8080/login/user=<username>&password=<password>
             # Return Request .get
-            print("Invalid Credentials")
-            return 'Invalid username or password.'
+            return self.send_request(username, password)
+
+    def send_request(self, username, password):
+        url = 'https://localhost:8080/login/username={}&password={}'.format(username,password)
+        validity_message = requests.get(url)
+        print(validity_message)
+        return validity_message
 
 def get_message():
     """this could be any function that blocks until data is ready"""
@@ -46,6 +54,15 @@ def client_to_server():
 @app.route('/test')
 def test():
     return "Connection to WebTier successful."
+
+@app.route('/db')
+def sendRequest():
+    print("Sending request to database...")
+
+    auth = AuthenticationService()
+    res = auth.send_request("Tom", "Password")
+
+    return "Connection to Database successful."
 
 @app.route('/login', methods =['POST'])
 def login():
