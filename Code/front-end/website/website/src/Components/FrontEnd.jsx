@@ -11,6 +11,10 @@ const FrontEnd = () => {
     const [onlineStatus, setOnlineStatus] = useState(false);
     const [loadingStatus, setLoadingStatus] = useState(true);
 
+    const WEBTIERURL_RESPONSE = "http://127.0.0.1:8090/test";
+    const WEBTIERURL_SENDDETAILS = "http://127.0.0.1:8090/login";
+    //const WEBTIERURL_SUBMITOUTCOME = "http://127.0.0.1:8090/login";
+
     const handleUserNameChange = (changedUserName) => {
         setUserName(changedUserName);
         console.log("Changed user name");
@@ -20,11 +24,14 @@ const FrontEnd = () => {
         setUserPassword(changedUserPassword);
         console.log("Changed user password");
     }
-    
-    
 
-    const WEBTIERURL = "http://127.0.0.1:8090/test"
-
+    const handleSubmitButton = event => {
+        event.preventDefault();
+        postUserDetails(userName, userPassword);
+        //console.log("Sending user details to webtier");
+        console.log(userName, userPassword);
+    }
+    
     useEffect(() => {
         setTimeout(() => {
             getResponseWebTier()
@@ -35,8 +42,7 @@ const FrontEnd = () => {
         setLoadingStatus(true);
         console.log(onlineStatus);
         try {
-            const res = await axios.get(WEBTIERURL);
-            console.log(res);
+            const res = await axios.get(WEBTIERURL_RESPONSE);
             const response = await res.data;
             console.log(response);
             setOnlineStatus(true);
@@ -53,13 +59,31 @@ const FrontEnd = () => {
 
     const postUserDetails = async (userName, userPassword) => {
         try {
-            await axios.post(WEBTIERURL, [userName, userPassword]);
+            await axios.post(WEBTIERURL_SENDDETAILS, {"UN" : {userName}, "PW" : {userPassword}});
             setOnlineStatus(true);
+            console.log("Sent info");
         }
         catch(e) {
-            
+            setOnlineStatus(false);
+            console.log("Info not sent");
         }
     }
+
+    {/*const getSubmitResult = async () => {
+        try {
+            const res = await axios.get(WEBTIERURL_SUBMITOUTCOME);
+            const response = await res.data;
+            if (response === true) {
+                console.log("Login successful")
+            }
+            else {
+                console.log("Login failed")
+            }
+        }
+        catch(e) {
+            console.log("Login failed")
+        }
+    }*/}
     
     return (
         <div>
@@ -67,6 +91,8 @@ const FrontEnd = () => {
                 userDetails = {{userName, userPassword}}
                 handleUserNameChange={handleUserNameChange}
                 handleUserPasswordChange={handleUserPasswordChange}
+                //handleSubmitButton={handleSubmitButton}
+                postUserDetails={postUserDetails}
             />
             <p>{userName}</p>
             <p>{userPassword}</p>
