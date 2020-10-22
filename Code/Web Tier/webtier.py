@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from flask_sse import sse
 from flask_cors import CORS
 import requests
@@ -7,6 +7,26 @@ import time
 app = Flask(__name__)
 #app.register_blueprint(sse, url_prefix='/stream')
 CORS(app)
+
+class AuthenticationService(object):
+    def authenticate(self, username, password):
+        if not username or not password:
+            print("Empty User/Password")
+            return 'Username or password empty...'
+        else:
+            # Make a call to the database and return message.
+            # Return Request .get
+            print("Invalid Credentials")
+            return 'Invalid username or password.'
+
+def get_message():
+    """this could be any function that blocks until data is ready"""
+    time.sleep(1.0)
+    s = time.ctime(time.time())
+    return s
+
+def bootapp():
+    app.run(port=8090, threaded=True, host=('0.0.0.0'))
 
 @app.route('/deals')
 def forwardStream():
@@ -25,19 +45,19 @@ def client_to_server():
 @app.route('/')
 @app.route('/test')
 def test():
-    return "webtier service points are running..."
+    return "Connection to WebTier successful."
 
+@app.route('/login', methods =['POST'])
+def login():
+    print("Login route accessed.")
 
-def get_message():
-    """this could be any function that blocks until data is ready"""
-    time.sleep(1.0)
-    s = time.ctime(time.time())
-    return s
+    username = request.json['UN']['userName']
+    password = request.json['PW']['userPassword']
 
-def bootapp():
-    app.run(port=8090, threaded=True, host=('0.0.0.0'))
+    print("Got username and password.")
 
+    auth = AuthenticationService()
 
+    result = auth.authenticate(username, password)
 
-if __name__ == '__main__':
-     bootapp()
+    return result
