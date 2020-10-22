@@ -18,17 +18,25 @@ const FrontEnd = () => {
 
     return (
         <Router>
-            <Route exact path='/' component={() => <HomePage changeStatus={changeLoginStatus} testing="test"/>} />
+            {loginState ?
+                <Route exact path='/display' component={DisplayPage} /> :
+                <Route path = '/' render={() => <Login changeStatus={changeLoginStatus} testing="test"/>} />
+            }
+        </Router>
+
+
+        /*<Router>
+            <Route exact path='/' render={() => <Login changeStatus={changeLoginStatus} testing="test"/>} />
             <Route path = '/display' component={DisplayPage}  />
-                {/*<HomePage 
+                <HomePage 
                     userDetails={{ userName, userPassword }}
                     handleUserNameChange={handleUserNameChange}
                     handleUserPasswordChange={handleUserPasswordChange}
                     //handleSubmitButton={handleSubmitButton}
                     postUserDetails={postUserDetails}
                 />
-                <NavBar />*/}
-        </Router>
+                <NavBar />
+        </Router>*/
     );
 }
 
