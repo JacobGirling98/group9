@@ -23,6 +23,7 @@ class AuthenticationService(object):
         return encrypted_password
 
     def _connectToDatabase(self):
+        print("Connecting to database...")
         connectUrl = "http://localhost:8080/connect"
         connectedResponse = requests.get(connectUrl)
 
@@ -35,9 +36,13 @@ class AuthenticationService(object):
         # Change passwords so that they are encrypted.
         
         if self._connectToDatabase() == 200:
+            print("Sending request to database...")
+
             url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
             validity_message = requests.get(url).text
-            print(validity_message)
+
+            print("RESPONSE: " + validity_message)
+
             return validity_message
         else:
             print("Could not connect to database.")
@@ -76,9 +81,9 @@ def sendRequest():
     print("Sending request to database...")
 
     auth = AuthenticationService()
-    res = auth.send_request("selvyn", "gradprog2016")
+    response = auth.send_request("selvyn", "gradprog2016")
 
-    return res
+    return response
 
 @app.route('/login', methods =['POST'])
 def login():
