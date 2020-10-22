@@ -19,10 +19,27 @@ const FrontEnd = () => {
     return (
         <Router>
             {loginState ?
-                <Route exact path='/display' component={DisplayPage} /> :
+                <Route path='/display' render={() => <DisplayPage />} /> :
                 <Route path = '/' render={() => <Login changeStatus={changeLoginStatus} testing="test"/>} />
             }
         </Router>
+
+        //<Route path='/display' render={() => <DisplayPage />} />        
+
+        /*<div>
+        <Router>
+        {loginState ?
+            (<switch>
+                <Route exact path='/display' component={DisplayPage} />
+            </switch> ):
+            (<switch>
+                <Route path = '/' render={() => <Login changeStatus={changeLoginStatus} testing="test" />} />
+            </switch>)
+        }
+        </Router>
+        </div>*/
+        
+        
 
 
         /*<Router>
