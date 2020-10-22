@@ -36,9 +36,13 @@ def select_all():
 def insert_test():
     return DAO.insert_test()
 
-@app.route('/insert_user/username=<username>&password=<encryptedPasswd>')
-def insert_user(username,encryptedPasswd):
-    return DAO.insert_user(username,encryptedPasswd)
+@app.route('/register_user/username=<username>&password=<encryptedPasswd>')
+def register_user(username,encryptedPasswd):
+    return DAO.register_user(username,encryptedPasswd)
+
+@app.route('/login/username=<username>&password=<encryptedPasswd>')
+def login(username,encryptedPasswd):
+    return DAO.login(username,encryptedPasswd)
     
 
 def bootapp():
