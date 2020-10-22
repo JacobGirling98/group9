@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function HistoricPage() {
+export default function ReportPage() {
     return (
         <div>
-            <p>Test Historic</p>
+            <p>Test Report</p>
         </div>
     )
 }
-
