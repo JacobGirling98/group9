@@ -2,8 +2,7 @@ import mysql.connector
 import databaseConnector
 import json
 import webServiceStream
-
-
+from flask import Flask, Response
 
 mydb = databaseConnector.DatabaseConnector()
 
@@ -35,14 +34,16 @@ def login(username,encryptedPasswd):
 
     #return(response.json())
 
-def show_historical_data(startDate=None,endDate=None,instrumentName=None,counterparty=None):
+def show_historical_data():
 
-    #return(str(startDate) + ' ' + str(endDate) + ' ' + str(instrumentName) + ' ' + str(counterparty))
-    
-    if (startDate == None and endDate == None and instrumentName == None and counterparty == None):
-        query = "SELECT * FROM deal"
-        result = mydb.select(query)
-        return(str(result))
+    query = "SELECT * FROM deal JOIN counterparty JOIN instrument ON deal_counterparty_id = counterparty.counterparty_id AND deal_instrument_id = instrument.instrument_id"
+    result = mydb.select(query)
+
+    def dbStream():
+        for row in result:
+            #nonlocal instrList
+            yield str(row) + "\n"
+    return Response(dbStream(), status=200, mimetype="text/event-stream")
 
 def parseRow(jsonRow):
     y = json.loads(jsonRow)

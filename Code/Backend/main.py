@@ -40,9 +40,9 @@ def register_user(username,encryptedPasswd):
 def login(username,encryptedPasswd):
     return DAO.login(username,encryptedPasswd)
 
-@app.route('/showHistoricalData/beginning=<startDate>&ending=<endDate>&instrumentName=<instrumentName>&counterparty=<counterparty>')
-def show_historical_data(startDate,endDate,instrumentName,counterparty):
-    return DAO.show_historical_data(startDate,endDate,instrumentName,counterparty)
+@app.route('/showHistoricalData/')
+def show_historical_data():
+    return DAO.show_historical_data()
 
 def bootapp():
     #global rdd 
