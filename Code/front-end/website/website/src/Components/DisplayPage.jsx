@@ -1,11 +1,21 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import NavBar from './NavBar';
+import Header from './Header';
 
-const DisplayPage = () => {
+const DisplayPage = (props) => {
     return (
-
+        <>
+        <header>
+            <Header match={props.match}/>
+        </header>
+        <div>
+            <Router>
+                <Route path={`${props.match.url}`} component={FilmDescription} />
+            </Router>
+        </div>
+        </>
+        
     );
 }
 
