@@ -32,13 +32,10 @@ class AuthenticationService(object):
     def send_request(self, username, password):
         encrypted_password = self._encrypt_password(password)
 
-        # Needs linking up the function.
-        # Change passwords so that they are encrypted.
-        
         if self._connectToDatabase() == 200:
             print("Sending request to database...")
 
-            url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
+            url = 'http://localhost:8080/login/username={}&password={}'.format(username,encrypted_password)
             validity_message = requests.get(url).text
 
             print("RESPONSE: " + validity_message)
@@ -47,6 +44,34 @@ class AuthenticationService(object):
         else:
             print("Could not connect to database.")
             return "Something went wrong."
+
+class DealViewer(object):
+    def getHistoricalData(self):
+
+        # Get the parameters.
+        # Start Date, End Date, Instrument, Counterparty
+
+        # If Start date > End date wrong
+
+<<<<<<< HEAD
+        historicDataUrl = 'http://localhost:8080/showHistoricalData/'
+=======
+        historicDataUrl = 'http://localhost:8080/showHistoricalData/
+>>>>>>> 57c465bccdea4e64ae62c451bc17d7a990eec057
+        historicData = requests.get(historicDataUrl)
+
+        # Format the data.
+
+        # Perform calculations.
+        # - Realised profit
+
+        # Buy and sell averages
+
+        # How do we return everything
+        # If nothing?
+        # Profit/Loss
+        # Each Instrument Trade
+        return "data"
 
 def get_message():
     """this could be any function that blocks until data is ready"""
@@ -82,6 +107,15 @@ def sendRequest():
 
     auth = AuthenticationService()
     response = auth.send_request("selvyn", "gradprog2016")
+
+    return response
+
+@app.route('/historicData')
+def viewHistoric():
+    print("Sending request to database...")
+
+    dealDb = DealViewer()
+    response = dealDb.getHistoricalData()
 
     return response
 
