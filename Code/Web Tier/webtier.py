@@ -53,7 +53,7 @@ class DealViewer(object):
 
         # If Start date > End date wrong
 
-        historicDataUrl = 'http://localhost:8080/showHistoricalData/
+        historicDataUrl = 'http://localhost:8080/showHistoricalData/'
         historicData = requests.get(historicDataUrl)
 
         # Format the data.
