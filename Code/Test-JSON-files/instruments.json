@@ -1,21 +1,19 @@
 ﻿{
-  "instruments": {
-    "instrument": [
-      {
-        "name": "Galactia",
-        "buy_avg": 9305.14,
-        "sell_avg": 8426.24
-      },
-      {
-        "name": "dvis",
-        "buy_avg": 9305.14,
-        "sell_avg": 8426.24
-      },
-      {
-        "name": "Galactia",
-        "buy_avg": 9305.14,
-        "sell_avg": 8426.24
-      }
-    ]
+  "instrument": [
+    {
+      "name": "Galactia",
+      "buy_avg": 9305.14,
+      "sell_avg": 8426.24
+    },
+    {
+      "name": "Celestial",
+      "buy_avg": 124.17,
+      "sell_avg": 234.14
+    },
+    {
+      "name": "Astronomica",
+      "buy_avg": 2451.14,
+      "sell_avg": 2354.10
+    }
+  ]
   }
-}

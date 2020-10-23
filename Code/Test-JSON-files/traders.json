@@ -7,15 +7,16 @@
       "effective_PL": 124.01
     },
     {
-      "name": "Selvyn",
-      "end_position": -124.67,
-      "realized_PL": 425.24,
-      "effective_PL": 124.01
+      "name": "Lina",
+      "end_position": -1254.25,
+      "realized_PL": -1114.85,
+      "effective_PL": -1005.75
     },
     {
-      "name": "Celestial",
-      "buy_avg": 541.98,
-      "sell_avg": 523.12
+      "name": "John",
+      "end_position": 8457.24,
+      "realized_PL": 6574.24,
+      "effective_PL": 7452.54
     }
   ]
 }
