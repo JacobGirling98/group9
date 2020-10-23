@@ -6,13 +6,13 @@ const NavBar = (props) => {
         <nav className="nav">
             <ul>
                 <li>
-                    <Link className="pageLink" to={`${props.match.url}`}>Display Home</Link>
+                    <Link className="pageLink" to={`/display`}>Display Home</Link>
                 </li>
                 <li>
-                    <Link className="pageLink" to={`${props.match.url}/historic`}>Historical Data</Link>
+                    <Link className="pageLink" to={`/display/historic`}>Historical Data</Link>
                 </li>
                 <li>
-                    <Link className="pageLink" to={`${props.match.url}/report`}>Minimum Report</Link>
+                    <Link className="pageLink" to={`/display/report`}>Minimum Report</Link>
                 </li>
             </ul>
         </nav>

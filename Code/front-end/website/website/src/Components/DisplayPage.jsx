@@ -2,29 +2,22 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './Header';
+import NavBar from './NavBar';
 import HistoricPage from './HistoricPage';
+import DisplayPageHome from './DisplayPageHome';
+import ReportPage from './ReportPage';
 
 const DisplayPage = (props) => {
-    
-    {/*const websites = {
-        'historic' : {HistoricPage},
-        'report' : {ReportPage}
-    };*/}
-    
+   
     return (
         <>
         <header>
-            <Header match={props.match}/>
+            <NavBar match={props.match}/>
         </header>
         <div>
-            <Router>
-                <Route path={`${props.match.url}`} component={HistoricPage} />
-                <Route exact path={`${props.match.url}`} />
-            
-                {/*<main>
-                    <HistoricPage />
-                </main>*/}
-            </Router>
+            <Route exact path='/display' component={DisplayPageHome} />
+            <Route exact path='/display/historic' component={HistoricPage} />
+            <Route exact path='/display/report' component={ReportPage} />
         </div>
         </>
         
