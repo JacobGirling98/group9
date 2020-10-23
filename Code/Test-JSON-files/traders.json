@@ -1,0 +1,21 @@
+﻿{
+  "trader": [
+    {
+      "name": "Selvyn",
+      "end_position": -124.67,
+      "realized_PL": 425.24,
+      "effective_PL": 124.01
+    },
+    {
+      "name": "Selvyn",
+      "end_position": -124.67,
+      "realized_PL": 425.24,
+      "effective_PL": 124.01
+    },
+    {
+      "name": "Celestial",
+      "buy_avg": 541.98,
+      "sell_avg": 523.12
+    }
+  ]
+}

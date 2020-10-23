@@ -1,0 +1,21 @@
+﻿{
+  "instruments": {
+    "instrument": [
+      {
+        "name": "Galactia",
+        "buy_avg": 9305.14,
+        "sell_avg": 8426.24
+      },
+      {
+        "name": "dvis",
+        "buy_avg": 9305.14,
+        "sell_avg": 8426.24
+      },
+      {
+        "name": "Galactia",
+        "buy_avg": 9305.14,
+        "sell_avg": 8426.24
+      }
+    ]
+  }
+}
