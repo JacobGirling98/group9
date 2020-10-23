@@ -12,7 +12,7 @@ const Login = props => {
     const [onlineStatus, setOnlineStatus] = useState(false);
     const [loadingStatus, setLoadingStatus] = useState(true);
 
-    const WEBTIERURL_RESPONSE = "http://127.0.0.1:8090/test";
+    const WEBTIERURL_RESPONSE = "http://127.0.0.1:8090/db";
     const WEBTIERURL_SENDDETAILS = "http://127.0.0.1:8090/login";
     //const WEBTIERURL_SUBMITOUTCOME = "http://127.0.0.1:8090/login";
 
@@ -78,8 +78,8 @@ const Login = props => {
     return (
         <>
             {(onlineStatus) ?
-                <h3>Connected to Webtier</h3> :
-                <h3>Not Connected to Webtier</h3>
+                <h3>Connected to Database</h3> :
+                <h3>Not Connected to Database</h3>
             }
             <form onSubmit={handleSubmitButton}>
                 <table>
