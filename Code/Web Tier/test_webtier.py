@@ -2,12 +2,41 @@ from webtier import *
 
 class TestWebTier(object):
     def test_connection_success_returns_success_message(self):
-        #Arrange
         expectedMessage = "webtier service points are running..."
 
-        #Act
         result = test()
 
-        #Assert
         assert result == expectedMessage
 
+    ## Maybe make an authentication service class
+    ## Test Login Success
+
+    def test_authentication_with_invalid_credentials_returns_error(self):
+        expectedMessage = "Invalid username or password."
+        username = "Tom"
+        password = "Password"
+        auth = AuthenticationService()
+
+        result = auth.authenticate(username, password)
+
+        assert result == expectedMessage
+
+    def test_authentication_with_empty_login_returns_error(self):
+        expectedMessage = 'Username or password empty...'
+        username = ""
+        password = "Password"
+        auth = AuthenticationService()
+
+        result = auth.authenticate(username, password)
+
+        assert result == expectedMessage
+
+    def test_authentication_with_empty_password_returns_error(self):
+        expectedMessage = 'Username or password empty...'
+        username = "Tom"
+        password = ""
+        auth = AuthenticationService()
+
+        result = auth.authenticate(username, password)
+
+        assert result == expectedMessage

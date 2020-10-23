@@ -16,6 +16,13 @@ const Login = props => {
     const WEBTIERURL_SENDDETAILS = "http://127.0.0.1:8090/login";
     //const WEBTIERURL_SUBMITOUTCOME = "http://127.0.0.1:8090/login";
 
+    useEffect(() => {
+        setTimeout(() => {
+            getResponseWebTier()
+            //console.log(`${props.match.url}`);
+        }, 1000);
+    }, []);
+    
     const handleUserNameChange = (changedUserName) => {
         setUserName(changedUserName);
         console.log("Changed user name");
@@ -25,20 +32,6 @@ const Login = props => {
         setUserPassword(changedUserPassword);
         
     }
-
-    {/*const handleSubmitButton = event => {
-        event.preventDefault();
-        postUserDetails(userName, userPassword);
-        //console.log("Sending user details to webtier");
-        console.log(userName, userPassword);
-    }*/}
-
-    useEffect(() => {
-        setTimeout(() => {
-            getResponseWebTier()
-            //console.log(`${props.match.url}`);
-        }, 1000);
-    }, []);
 
     const getResponseWebTier = async () => {
         setLoadingStatus(true);
@@ -64,13 +57,8 @@ const Login = props => {
             const res = await axios.post(WEBTIERURL_SENDDETAILS, { "UN": { userName }, "PW": { userPassword } });
             const response = await res.data;
             console.log(response);
-            //console.log(res);
-            
-
             setOnlineStatus(true);
             if (response === "Invalid username or password.") {
-                //console.log("successful")
-                //return <DisplayPage match={props.match}/>;
                 props.changeStatus();
             }
         }
@@ -80,35 +68,19 @@ const Login = props => {
         }
     }
 
-    {/*const getSubmitResult = async () => {
-        try {
-            const res = await axios.get(WEBTIERURL_SUBMITOUTCOME);
-            const response = await res.data;
-            if (response === true) {
-                console.log("Login successful")
-            }
-            else {
-                console.log("Login failed")
-            }
-        }
-        catch(e) {
-            console.log("Login failed")
-        }
-    }*/}
-
     const handleSubmitButton = event => {
         event.preventDefault();
         postUserDetails(userName, userPassword);
-        //props.postUserDetails("Tom", "Jacob");
         console.log("Sending user details to webtier");
         console.log(userName, userPassword);
-        //console.log(result);
-        //console.log("Tom", "Jacob");
     }
 
-    
     return (
         <>
+            {(onlineStatus) ?
+                <h3>Connected to Webtier</h3> :
+                <h3>Not Connected to Webtier</h3>
+            }
             <form onSubmit={handleSubmitButton}>
                 <table>
                     <tbody>
@@ -146,9 +118,6 @@ const Login = props => {
                     </tbody>
                 </table>
             </form>
-
-            {/*<p>{props.userDetails.userName}</p>
-            <p>{props.userDetails.userPassword}</p>*/}
         </>
     );
 }
