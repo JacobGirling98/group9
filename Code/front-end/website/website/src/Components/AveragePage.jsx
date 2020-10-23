@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductRow from './ProductRow';
+import ProductRowInstrument from './ProductRowInstrument';
+import instruments from './Static/instruments';
 
 export default function AveragePage() {
     
@@ -10,6 +11,7 @@ export default function AveragePage() {
 
     useEffect(() => {
         getAverageData();
+        console.log(instruments);
     }, []);
 
     const getAverageData = async () => {
@@ -27,7 +29,7 @@ export default function AveragePage() {
         }
     }
 
-    const test_data = {
+    /*const test_data = {
         "instruments" : {
             "instrument" : [
                 {
@@ -42,24 +44,26 @@ export default function AveragePage() {
                 }
             ]
         }
-    }
+    }*/
 
-    const our_data = test_data["instruments"]["instrument"];
+    const our_data = instruments["instrument"];
         
     let rows = [];
+    let counter = 0;
 
     our_data.forEach(product => {
-        rows.push(<ProductRow product={product} />)
+        rows.push(<ProductRowInstrument product={product} key={counter}/>)
+        counter = counter + 1;
     });
     
     return (
         <div>
-            <p>Test Average</p>
+            <h1>Instrument Report</h1>
             <table>
                 <thead>
                     <tr>
                         <th>
-                            Instrument Name
+                            Name
                         </th>
                         <th>
                             Avg. Buy Price

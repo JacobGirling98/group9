@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import AveragePage from './AveragePage';
 import DisplayPageHome from './DisplayPageHome';
 import ReportPage from './ReportPage';
+import DealsPage from './DealsPage';
 
 const DisplayPage = (props) => {
    
@@ -16,6 +17,7 @@ const DisplayPage = (props) => {
         </header>
         <div>
             <Route exact path='/display' component={DisplayPageHome} />
+            <Route exact path='/display/deals' component={DealsPage} />
             <Route exact path='/display/average' component={AveragePage} />
             <Route exact path='/display/report' component={ReportPage} />
         </div>

@@ -7,10 +7,10 @@ export default function ProductRow(props) {
                 {props.product.name}
             </td>
             <td>
-                {props.product.buy}
+                {props.product.buy_avg}
             </td>
             <td>
-                {props.product.sell}
+                {props.product.sell_avg}
             </td>
         </tr>
     )

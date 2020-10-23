@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductRow from './ProductRow';
+import ProductRowDealer from './ProductRowDealer';
+import traders from './Static/traders';
 
 export default function ReportPage() {
-    
+
     const [reportData, updateReportData] = useState({});
 
     const WEBTIER_REP = 'http://127.0.0.1:8090/client/testservice';
@@ -28,37 +29,36 @@ export default function ReportPage() {
         }
     }
 
-    
-    const test_data = {
-        "instruments" : {
-            "instrument" : [
-                {
-                    "name" : "Me",
-                    "buy" : 500,
-                    "sell" : 100
-                },
-                {
-                    "name" : "You",
-                    "buy" : 500,
-                    "sell" : 100
-                }
-            ]
-        }
-    }
+    const our_data = traders["trader"];
 
-
-    const our_data = test_data["instruments"]["instrument"];
-        
     let rows = [];
+    let counter = 0;
 
     our_data.forEach(product => {
-        rows.push(<ProductRow product={product} />)
+        rows.push(<ProductRowDealer product={product} key={counter}/>)
+        counter = counter + 1;
     });
-    
+
     return (
         <div>
-            <p>Test Report</p>
-            <table>
+            <h1>Dealer Report</h1>
+            <table >
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            End Position
+                        </th>
+                        <th>
+                            Realised PL
+                        </th>
+                        <th>
+                            Effective PL
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     {rows}
                 </tbody>

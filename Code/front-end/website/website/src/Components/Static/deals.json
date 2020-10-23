@@ -1,0 +1,52 @@
+﻿{
+  "deal": [
+    {
+      "deal_time": "2017-07-28 17:06:30",
+      "deal_type": "S",
+      "deal_amount": 425.24,
+      "deal_quantity": 21,
+      "counterparty_name": "Selvyn",
+      "instrument_name": "Galactia"
+    },
+    {
+      "deal_time": "2017-07-28 17:06:24",
+      "deal_type": "B",
+      "deal_amount": 1254.24,
+      "deal_quantity": 7,
+      "counterparty_name": "Lina",
+      "instrument_name": "Astronomica"
+    },
+    {
+      "deal_time": "2017-07-28 17:06:12",
+      "deal_type": "S",
+      "deal_amount": 4788.24,
+      "deal_quantity": 2,
+      "counterparty_name": "John",
+      "instrument_name": "Celestial"
+    },
+    {
+      "deal_time": "2017-07-28 17:06:10",
+      "deal_type": "S",
+      "deal_amount": 9876.14,
+      "deal_quantity": 74,
+      "counterparty_name": "Selvyn",
+      "instrument_name": "Galactia"
+    },
+    {
+      "deal_time": "2017-07-28 17:06:38",
+      "deal_type": "B",
+      "deal_amount": 853.47,
+      "deal_quantity": 9,
+      "counterparty_name": "John",
+      "instrument_name": "Galactia"
+    },
+    {
+      "deal_time": "2017-07-28 17:06:39",
+      "deal_type": "B",
+      "deal_amount": 4789.25,
+      "deal_quantity": 47,
+      "counterparty_name": "Lina",
+      "instrument_name": "Astronomica"
+    }
+  ]
+}

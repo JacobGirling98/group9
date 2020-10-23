@@ -3,7 +3,7 @@ import React from 'react';
 export default function DisplayPageHome() {
     return (
         <div>
-            <p>Test Display Home</p>
+            <h1>Home</h1>
         </div>
     )
 }
