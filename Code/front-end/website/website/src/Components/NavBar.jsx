@@ -9,7 +9,7 @@ const NavBar = (props) => {
                     <Link className="pageLink" to={`/display`}>Display Home</Link>
                 </li>
                 <li>
-                    <Link className="pageLink" to={`/display/historic`}>Historical Data</Link>
+                    <Link className="pageLink" to={`/display/average`}>Average Data</Link>
                 </li>
                 <li>
                     <Link className="pageLink" to={`/display/report`}>Minimum Report</Link>

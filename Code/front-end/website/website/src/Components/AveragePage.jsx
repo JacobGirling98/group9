@@ -2,25 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductRow from './ProductRow';
 
-export default function ReportPage() {
+export default function AveragePage() {
     
-    const [reportData, updateReportData] = useState({});
+    const [averageData, updateAverageData] = useState({});
 
-    const WEBTIER_REP = 'http://127.0.0.1:8090/client/testservice';
+    const WEBTIER_AVG = 'http://127.0.0.1:8090/client/testservice';
 
     useEffect(() => {
-        getReportData();
-        //visualize(reportData);
-
+        getAverageData();
     }, []);
 
-    const getReportData = async () => {
+    const getAverageData = async () => {
         try {
-            const res = await axios.get(WEBTIER_REP);
+            const res = await axios.get(WEBTIER_AVG);
             const response = await res.data;
+            //console.log(response);
             console.log("Data retrieved");
-            updateReportData(response);
-            console.log(response);
+            updateAverageData(response);
+            console.log(averageData);
         }
         catch (e) {
             console.log(e.message);
@@ -28,7 +27,6 @@ export default function ReportPage() {
         }
     }
 
-    
     const test_data = {
         "instruments" : {
             "instrument" : [
@@ -39,13 +37,12 @@ export default function ReportPage() {
                 },
                 {
                     "name" : "You",
-                    "buy" : 500,
-                    "sell" : 100
+                    "buy" : 400,
+                    "sell" : 200
                 }
             ]
         }
     }
-
 
     const our_data = test_data["instruments"]["instrument"];
         
@@ -57,8 +54,21 @@ export default function ReportPage() {
     
     return (
         <div>
-            <p>Test Report</p>
+            <p>Test Average</p>
             <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Instrument Name
+                        </th>
+                        <th>
+                            Avg. Buy Price
+                        </th>
+                        <th>
+                            Avg. Sell price
+                        </th>
+                    </tr>  
+                </thead>
                 <tbody>
                     {rows}
                 </tbody>
@@ -66,3 +76,4 @@ export default function ReportPage() {
         </div>
     )
 }
+

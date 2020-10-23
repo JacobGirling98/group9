@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './Header';
 import NavBar from './NavBar';
-import HistoricPage from './HistoricPage';
+import AveragePage from './AveragePage';
 import DisplayPageHome from './DisplayPageHome';
 import ReportPage from './ReportPage';
 
@@ -16,7 +16,7 @@ const DisplayPage = (props) => {
         </header>
         <div>
             <Route exact path='/display' component={DisplayPageHome} />
-            <Route exact path='/display/historic' component={HistoricPage} />
+            <Route exact path='/display/average' component={AveragePage} />
             <Route exact path='/display/report' component={ReportPage} />
         </div>
         </>
