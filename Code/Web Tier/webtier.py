@@ -32,13 +32,10 @@ class AuthenticationService(object):
     def send_request(self, username, password):
         encrypted_password = self._encrypt_password(password)
 
-        # Needs linking up the function.
-        # Change passwords so that they are encrypted.
-        
         if self._connectToDatabase() == 200:
             print("Sending request to database...")
 
-            url = 'http://localhost:8080/login/username={}&password={}'.format(username,password)
+            url = 'http://localhost:8080/login/username={}&password={}'.format(username,encrypted_password)
             validity_message = requests.get(url).text
 
             print("RESPONSE: " + validity_message)
