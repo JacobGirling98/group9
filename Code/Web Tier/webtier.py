@@ -48,6 +48,30 @@ class AuthenticationService(object):
             print("Could not connect to database.")
             return "Something went wrong."
 
+class DealViewer(object):
+    def getHistoricalData(self):
+
+        # Get the parameters.
+        # Start Date, End Date, Instrument, Counterparty
+
+        # If Start date > End date wrong
+
+        historicDataUrl = 'http://localhost:8080/showHistoricalData/
+        historicData = requests.get(historicDataUrl)
+
+        # Format the data.
+
+        # Perform calculations.
+        # - Realised profit
+
+        # Buy and sell averages
+
+        # How do we return everything
+        # If nothing?
+        # Profit/Loss
+        # Each Instrument Trade
+        return "data"
+
 def get_message():
     """this could be any function that blocks until data is ready"""
     time.sleep(1.0)
@@ -82,6 +106,15 @@ def sendRequest():
 
     auth = AuthenticationService()
     response = auth.send_request("selvyn", "gradprog2016")
+
+    return response
+
+@app.route('/historicData')
+def viewHistoric():
+    print("Sending request to database...")
+
+    dealDb = DealViewer()
+    response = dealDb.getHistoricalData()
 
     return response
 
